@@ -15,6 +15,7 @@ async function run(){
     try{
         const serviceCollections = client.db('restaurantGuide').collection('services')
         const addserviceCollections = client.db('restaurantGuide').collection('addservice')
+        const reviewCollections = client.db('restaurantGuide').collection('review')
 
         app.get('/services',async (req,res)=>{
             const query = {}
@@ -43,6 +44,11 @@ async function run(){
             const query = req.body
             const services = await addserviceCollections.insertOne(query)
             res.send(services)
+        })
+        app.post('/review',async (req,res)=>{
+            const query = req.body
+            const review = await reviewCollections.insertOne(query)
+            res.send(review)
         })
     }
     finally{
