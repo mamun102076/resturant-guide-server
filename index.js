@@ -34,6 +34,11 @@ async function run(){
             const services = await serviceCollections.findOne(query)
             res.send(services)
         })
+        app.get('/addservice',async (req,res)=>{
+            const query = {}
+            const services = await addserviceCollections.find(query).toArray()
+            res.send(services)
+        })
         app.post('/addservice',async (req,res)=>{
             const query = req.body
             const services = await addserviceCollections.insertOne(query)
