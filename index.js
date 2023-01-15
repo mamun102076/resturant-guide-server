@@ -45,6 +45,12 @@ async function run(){
             const services = await addserviceCollections.insertOne(query)
             res.send(services)
         })
+        app.get('/review/:id',async (req,res)=>{
+            const id = req.params.id
+            const filter = { serviceId: id }
+            const review = await reviewCollections.find(filter).toArray()
+            res.send(review)
+        })
         app.post('/review',async (req,res)=>{
             const query = req.body
             const review = await reviewCollections.insertOne(query)
